@@ -29,7 +29,22 @@ public class ProductService {
                 .quantity(productRequest.getQuantity())
                 .build();
 
-        products.add(product);
+        if (productRequest.getQuantity() <= 0) {
+            throw new IllegalArgumentException("Quantity must be greater than 0");
+        } else {
+           int indexOfProduct = products.indexOf(product);
+            System.out.println("indexOfProduct: " + indexOfProduct);
+            Product existingProduct = products.stream()
+                    .filter(prod -> prod.getName().equals(product.getName()))
+                    .findAny()
+                    .orElse(null);
+           if (existingProduct != null) {
+               existingProduct.setQuantity(existingProduct.getQuantity() + productRequest.getQuantity());
+           } else {
+               products.add(product);
+           }
+        }
+
         return product;
     }
 }

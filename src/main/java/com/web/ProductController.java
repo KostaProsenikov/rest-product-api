@@ -23,7 +23,6 @@ public class ProductController {
     @Autowired
     public ProductController(ProductService productService) {
         this.productService = productService;
-//        System.out.println("ProductController created: " + API_V1_BASE_PATH + "/products");
     }
 
     @GetMapping()

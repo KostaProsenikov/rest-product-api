@@ -8,7 +8,6 @@ import com.web.dto.ProductResponse;
 public class DtoMapper {
 
     public static ProductResponse toProductResponse(Product product) {
-        System.out.println("Mapping product: " + product);
         return ProductResponse.builder()
                 .name(product.getName())
                 .quantity(product.getQuantity())
